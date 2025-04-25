@@ -15,7 +15,14 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  final stories = ['Your story', 'Yu Ting', 'Ivlyn', 'Xin Hui', 'Siew Zhen', 'Abu'];
+  final stories = [
+  {'name': 'Your story', 'image': 'assets/yx.jpeg'},
+  {'name': 'Yu Ting', 'image': 'assets/yt.jpeg'},
+  {'name': 'Ivlyn', 'image': 'assets/iv.jpeg'},
+  {'name': 'Xin Hui', 'image': 'assets/xh.jpeg'},
+  {'name': 'Siew Zhen', 'image': 'assets/sz.jpeg'},
+  {'name': 'Abu', 'image': 'assets/user_placeholder.png'}, // You can update Abu’s image if needed
+];
 
   @override
   Widget build(BuildContext context) {
@@ -50,39 +57,39 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: stories.length,
               itemBuilder: (context, index) {
-                return Container(
-                  width: 90, // Adjust width for consistent size
-                  margin: EdgeInsets.symmetric(horizontal: 7),
-                  child: Column(
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/border.png',
-                            width: 100, 
-                            height: 100, 
-                            fit: BoxFit.cover,
-                          ),
-                          CircleAvatar(
-                            radius: 35, // Fixed radius for the circle avatar
-                            backgroundImage: AssetImage('assets/user_placeholder.png'),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        stories[index],
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: index == 0 ? Colors.grey : Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+  return Container(
+    width: 90,
+    margin: EdgeInsets.symmetric(horizontal: 7),
+    child: Column(
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset(
+              'assets/border.png',
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+            CircleAvatar(
+              radius: 35,
+              backgroundImage: AssetImage(stories[index]['image']!),
+            ),
+          ],
+        ),
+        SizedBox(height: 6),
+        Text(
+          stories[index]['name']!,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 12,
+            color: index == 0 ? Colors.grey : Colors.white,
+          ),
+        ),
+      ],
+    ),
+  );
+  },
             ),
           ),
           Divider(),
@@ -112,7 +119,7 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.movie), label: ''),
-          BottomNavigationBarItem(icon: CircleAvatar(radius: 12, backgroundImage: AssetImage('assets/user_placeholder.png')), label: ''),
+          BottomNavigationBarItem(icon: CircleAvatar(radius: 12, backgroundImage: AssetImage('assets/yx.jpeg')), label: ''),
         ],
       ),
     );
@@ -126,7 +133,7 @@ class PostCard extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: CircleAvatar(backgroundImage: AssetImage('assets/user_placeholder.png')),
+          leading: CircleAvatar(backgroundImage: AssetImage('assets/yx.jpeg')),
           title: Text('yunxi', style: TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text('Mount Kinabalu'),
           trailing: Icon(Icons.more_vert),
